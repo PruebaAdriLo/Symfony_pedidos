@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pedidos Productos: {{ pedido.id }}{% endblock %}
+
+{% block body %}
+    <div class="container mx-auto px-4 py-8">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden relative">
+            <div class="flex flex-col md:flex-row">
+                <div class="w-full md:w-1/2 p-4">
+                    <div class="flex flex-col justify-between h-full">
+                        <div>
+                            <h2 class="text-lg md:text-2xl font-semibold text-gray-800 leading-tight bg-gray-200 p-2 gap-2">    
+                                {{ pedido.id }}
+                            </h2>
+                            <div class="grid grid-cols-3 gap-4">
+                            {% for proPed in pedidosProducto %}
+                                <div class="bg-white rounded-lg shadow-lg overflow-hidden relative">
+                                    <div class="px-4 py-4">
+                                        <div class="font-bold text-xl mb-2">{{ proPed.productos.nombre }}</div>
+                                        <p class="mb-2">{{ proPed.unidades }} unidades</p>
+                                    </div>
+                                        
+                            {% endfor %}
+                                </div>
+                            <div>
+
+                        <div class="flex justify-end mt-4">
+                            <a href="{{ path('app_pedidosProductos') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-r text-sm md:text-base">
+                                <i class="fas fa-list"></i> Ver Pedidos Productos
+                            </a>
+                        </div>
+                    </div>   
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

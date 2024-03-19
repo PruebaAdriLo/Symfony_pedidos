@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar pedido nº {{ pedidosProductos.id }} {% endblock %}
+
+{% block body %}
+    <div class="container mx-auto px-4 py-8">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden relative">
+            <div class="px-4 py-8">
+                <div class="mb-2">
+                    <h1 class="text-2xl font-bold text-gray-800">
+                        </i> Editar pedido nº {{ pedidosProductos.id }}
+                    </h1>
+                </div>
+
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+	                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+						<i class="fas fa-save"></i> Guardar
+					</button>
+                    {{ form_end(form) }}
+                    <br>
+
+                <div class="mt-4">
+                    <a href="{{ path('app_pedidosProductos') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded">
+                        <i class="fas fa-arrow-left"></i> Atrás
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

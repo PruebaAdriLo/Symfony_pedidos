@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pedidos{% endblock %}
+
+{% block body %}
+    <div class="container mx-auto px-4 py-8">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden relative">
+            <div class="px-4 py-8">
+
+                <div class="mb-2">
+                    <h1 class="text-2xl font-bold text-gray-800">
+                        <i class="fas fa-film"></i> Pedidos
+                    </h1>
+                </div>
+
+                {{ form_start(form) }}
+
+                {{ form_widget(form) }}
+
+                {% for flash_message in app.flashes('danger') %}
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                        <strong class="font-bold">¡Error!</strong>
+                        <span class="block sm:inline">{{ flash_message }}</span>
+                        <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                            <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <title>Cerrar</title>
+                                <path d="M14.348 5.652a.5.5 0 0 0-.707 0L10 9.293 5.354 4.647a.5.5 0 0 0-.707 0l-1 1a.5.5 0 0 0 0 .707L9.293 10l-4.646 4.646a.5.5 0 0 0 0 .707l1 1a.5.5 0 0 0 .707 0L10 10.707l4.646 4.646a.5.5 0 0 0 .707 0l1-1a.5.5 0 0 0 0-.707L10.707 10l4.647-4.646a.5.5 0 0 0 0-.707l-1-1z"/>
+                            </svg>
+                        </span>
+                    </div>
+                {% endfor %}
+
+                <div class="mt-4">
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        <i class="fas fa-save"></i> Guardar
+                    </button>
+                    <a href="{{ path('app_pedidos') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded"
+>
+                        <i class="fas fa-arrow-left"></i> Atrás
+                    </a>
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

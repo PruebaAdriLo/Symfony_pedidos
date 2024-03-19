@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Productos: {{ producto.nombre }}{% endblock %}
+
+{% block body %}
+    <div class="container mx-auto px-4 py-8">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden relative">
+            <div class="flex flex-col md:flex-row">
+                <div class="w-full md:w-1/2 p-4">
+                    <div class="flex flex-col justify-between h-full">
+                        <div>
+                            <h2 class="text-lg md:text-2xl font-semibold text-gray-800 leading-tight bg-gray-200 p-2 gap-2">    
+                                {{ producto.nombre }} - {{ producto.descripcion }}
+                            </h2>
+                        </div>
+                        <div>
+                            <h2 class="text-lg md:text-2xl font-semibold text-gray-800 leading-tight bg-gray-200 p-2 gap-2">    
+                                {{ producto.peso }}kg - {{ producto.stock }} unidades
+                            </h2>
+                        </div>
+                        <div>
+                            <h2 class="text-lg md:text-2xl font-semibold text-gray-800 leading-tight bg-gray-200 p-2 gap-2">    
+                                {# <a href="{{ path('app_productos_edit', {id: producto.id}) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-l"> #}
+                                <a href="#">Categoría: {{ producto.categoria.nombre }}</a>
+                            </h2>
+                        </div>
+
+                        <div class="flex justify-end mt-4">
+                            {# <a href="{{ path('app_producto_edit', {id: producto.id}) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-l text-sm md:text-base">
+                                <i class="fas fa-edit"></i> Editar
+                            </a> #}
+                            <a href="{{ path('app_productos') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-r text-sm md:text-base">
+                                <i class="fas fa-list"></i> Ver Productos
+                            </a>
+                        </div>
+                    </div>   
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

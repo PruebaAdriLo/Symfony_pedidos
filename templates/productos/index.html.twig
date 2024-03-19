@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Productos{% endblock %}
+
+{% block body %}
+
+    <div class="bg-gray-900 py-16">
+        <div class="container mx-auto px-4">
+            <h1 class="text-6xl text-white text-center">
+                 Productos
+            </h1>
+        </div>
+    </div>
+
+    {% for flash_message in app.flashes('danger') %}
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">¡Error!</strong>
+            <span class="block sm:inline">{{ flash_message }}</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <title>Cerrar</title>
+                    <path d="M14.348 5.652a.5.5 0 0 0-.707 0L10 9.293 5.354 4.647a.5.5 0 0 0-.707 0l-1 1a.5.5 0 0 0 0 .707L9.293 10l-4.646 4.646a.5.5 0 0 0 0 .707l1 1a.5.5 0 0 0 .707 0L10 10.707l4.646 4.646a.5.5 0 0 0 .707 0l1-1a.5.5 0 0 0 0-.707L10.707 10l4.647-4.646a.5.5 0 0 0 0-.707l-1-1z"/>
+                </svg>
+            </span>
+        </div>
+    {% endfor %}
+
+    <div class="container mx-auto px-4 py-8">
+        {% if productos is empty %}
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden relative">
+                <div class="px-6 py-4">
+                    <div class="font-bold text-xl mb-2">No category found</div>
+                    <p class="text-gray-700 text-base">
+                        There are no category in the database. <a href="#" class="text-blue-500">Add one</a>!
+                    </p>
+            </div>
+        {% else %}
+            <div class="grid grid-cols-3 gap-4">
+                {% for producto in productos %}
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden relative">
+
+                    <div class="px-4 py-4">
+                        <div class="font-bold text-xl mb-2">{{ producto.nombre }}</div>
+                        <p class="mb-2">{{ producto.descripcion }}</p>
+                    </div>
+                    <div class="px-4 py-4">
+                        <div class="font-bold text-xl mb-2">{{ producto.peso }}kg - {{ producto.stock }} unidades</div>
+                        <a href="{{ path('app_categoria', {id: producto.categoria.id}) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4">Categoría: {{ producto.categoria.nombre }}</a>
+                    </div>
+                    <div class="flex justify-center my-3">
+                        <a href="{{ path('app_producto_edit', {id: producto.id}) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-l">
+                            <i class="fas fa-edit"></i> Editar
+                        </a>
+                        <a href="{{ path('app_producto', {id: producto.id}) }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4">
+                                <i class="fas fa-eye"></i> Ver
+                        </a>
+                        <a href="{{ path('app_producto_delete', {id: producto.id}) }}" class="bg-red-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-r">
+                            <i class="fas fa-trahs"></i> Borrar No seguro
+                        </a>
+                        <form action="{{ path('app_producto_deleteSeguro', {id: producto.id}) }}" method="POST">
+                            <input type="hidden" name="valorToken" value="{{ csrf_token('delete-productoSeguro') }}">
+                            <button type="submit" class="bg-red-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-r">
+                            <i class="fas fa-trash"></i> Borrar Seguro
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

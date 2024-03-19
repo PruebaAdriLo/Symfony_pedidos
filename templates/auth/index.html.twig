@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2>Login</h2>
+
+    {% if error %}
+        <div>{{ error }}</div>
+    {% endif %}
+
+    <form method="post">
+        <label for="Correo">Usuario:</label>
+        <input type="text" id="Correo" name="Correo" required>
+
+        <label for="clave">Clave:</label>
+        <input type="password" id="clave" name="clave" required>
+
+        <button type="submit">Entrar</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categoría: {{ categoria.nombre }}{% endblock %}
+
+{% block body %}
+    <div class="container mx-auto px-4 py-8"> 
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden relative">
+            <div class="flex flex-col md:flex-row">
+                <div class="w-full md:w-1/2 p-4">
+                    <div class="flex flex-col justify-between h-full">
+                        <div>
+                            <h2 class="text-lg md:text-2xl font-semibold text-gray-800 leading-tight bg-gray-200 p-2 gap-2">    
+                                {{ categoria.nombre }} - {{ categoria.descripcion }}
+                            </h2>
+                            {% for producto in productos %}
+                            <div class="bg-white rounded-lg shadow-lg overflow-hidden relative">
+                                <div class="px-4 py-4">
+                                    <div class="font-bold text-xl mb-2">{{ producto.nombre }}</div> 
+                                    <p class="text-gray-700 text-base">
+                                        {# Descripción. Corta las palabras cuando llega a 100 caracteres #}
+                                        {# {{ producto.descripcion|slice(0, 100) }}... #}
+                                        {{ producto.descripcion }}
+                                    </p>
+                                    <p class="text-gray-700 text-base">
+                                        {{ producto.peso }}kg - {{ producto.stock }} unidades
+                                    </p>
+                                </div>
+                            </div>
+                            <br>
+                            {% endfor %}
+                        </div>
+
+                        <div class="flex justify-end mt-4">
+                            <a href="{{ path('app_categorias') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-r text-sm md:text-base">
+                                <i class="fas fa-list"></i> Ver categorías
+                            </a>
+                        </div>
+                    </div>   
+                </div> 
+            </div> 
+        </div>
+    </div> 
+{% endblock %}
